@@ -7,32 +7,27 @@ import (
 )
 
 func main() {
-
 	exibeIntroducao()
-	exibeMenu()
-	//	_, idade := devolveNomeIdade()
-	//	fmt.Println(idade)
-	comando := leComando()
+	// "while"
+	for {
+		exibeMenu()
 
-	switch comando {
-	case 1:
-		iniciarMonitoramento()
-	case 2:
-		fmt.Println("Exibindo Logs...")
-	case 0:
-		fmt.Println("Saindo do programa")
-		os.Exit(0)
-	default:
-		fmt.Println("Não conheço este comando")
-		//	os.Exit(-1)
+		comando := leComando()
+
+		switch comando {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo Logs...")
+		case 0:
+			fmt.Println("Saindo do programa")
+			os.Exit(0)
+		default:
+			fmt.Println("Não conheço este comando")
+			os.Exit(-1)
+		}
 	}
 }
-
-/* func devolveNomeIdade() (string, int) {
-	nome := "Kelly"
-	idade := 23
-	return nome, idade
-}*/
 func exibeIntroducao() {
 	nome := "Kelly"
 	fmt.Println("Olá, sr(a).", nome)
@@ -54,7 +49,28 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
+	var sites [4]string
+	sites[0] = "https://posgraduacao.mackenzie.br/login/index.php"
+	sites[1] = "https://github.com/"
+	sites[2] = "https://www.linkedin.com/feed/"
+	fmt.Println(sites)
+
 	site := "https://posgraduacao.mackenzie.br/login/index.php"
 	resp, _ := http.Get(site)
-	fmt.Println(resp)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site:", site, " foi carregado com sucesso!!")
+	} else {
+		fmt.Println("Site:", site, " está com problemas. Status Code:", resp.StatusCode)
+	}
 }
+
+/* Anotação:
+		_, idade := devolveNomeIdade()
+        fmt.Println(idade)
+		func devolveNomeIdade() (string, int) {
+		nome := "Kelly"
+		idade := 23
+		return nome, idade
+		fmt.Println(resp)
+*/
