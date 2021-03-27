@@ -4,7 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
+
+const monitoramentos = 3
+const deley = 5
 
 func main() {
 	exibeIntroducao()
@@ -43,34 +47,29 @@ func leComando() int {
 	var comandoLido int
 	fmt.Scan(&comandoLido)
 	fmt.Println("O comando escolhido foi", comandoLido)
-
+	fmt.Println("")
 	return comandoLido
 }
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	var sites [4]string
-	sites[0] = "https://posgraduacao.mackenzie.br/login/index.php"
-	sites[1] = "https://github.com/"
-	sites[2] = "https://www.linkedin.com/feed/"
-	fmt.Println(sites)
+	sites := []string{"https://posgraduacao.mackenzie.br/login/index.php", "https://github.com/", "https://www.linkedin.com/feed/"}
+	for i := 0; i < monitoramentos; i++ {
+		for i, site := range sites {
+			fmt.Println("Posição nº ", i, "o site é: ", site)
+			testaSite(site)
+		}
+		time.Sleep(deley * time.Second)
+	}
+	fmt.Println("")
+}
 
-	site := "https://posgraduacao.mackenzie.br/login/index.php"
+func testaSite(site string) {
 	resp, _ := http.Get(site)
 
 	if resp.StatusCode == 200 {
-		fmt.Println("Site:", site, " foi carregado com sucesso!!")
+		fmt.Println("Site:", site, "foi carregado com sucesso!")
 	} else {
-		fmt.Println("Site:", site, " está com problemas. Status Code:", resp.StatusCode)
+		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
 }
-
-/* Anotação:
-		_, idade := devolveNomeIdade()
-        fmt.Println(idade)
-		func devolveNomeIdade() (string, int) {
-		nome := "Kelly"
-		idade := 23
-		return nome, idade
-		fmt.Println(resp)
-*/
