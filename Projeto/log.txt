@@ -1,0 +1,9 @@
+28/03/2021 20:56:16 - https://posgraduacao.mackenzie.br/login/index.php - online: true
+28/03/2021 20:56:17 - https://github.com/ - online: true
+28/03/2021 20:56:17 - https://www.linkedin.com/feed - online: true
+28/03/2021 20:56:23 - https://posgraduacao.mackenzie.br/login/index.php - online: true
+28/03/2021 20:56:23 - https://github.com/ - online: true
+28/03/2021 20:56:24 - https://www.linkedin.com/feed - online: true
+28/03/2021 20:56:29 - https://posgraduacao.mackenzie.br/login/index.php - online: true
+28/03/2021 20:56:29 - https://github.com/ - online: true
+28/03/2021 20:56:42 - https://www.linkedin.com/feed - online: true
